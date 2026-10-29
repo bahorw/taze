@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Chess Assist",
+  "version": "2.3.0",
+  "description": "Live engine overlay for chess.com and lichess: best-move arrow, eval HUD, animated.",
+  "minimum_chrome_version": "109",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://*.chess.com/*",
+    "https://lichess.org/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Chess Assist",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.chess.com/*",
+        "https://lichess.org/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["engine/*"],
+      "matches": [
+        "https://*.chess.com/*",
+        "https://lichess.org/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}
+

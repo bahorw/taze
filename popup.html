@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chess Assist</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="fx" aria-hidden="true">
+    <div class="fx-grid"></div>
+    <div class="fx-orb fx-orb-a"></div>
+    <div class="fx-orb fx-orb-b"></div>
+    <div class="fx-scan"></div>
+  </div>
+
+  <main class="shell">
+    <header class="head">
+      <div class="mark" aria-hidden="true">♞</div>
+      <div class="brand">
+        <h1>CHESS<span>ASSIST</span></h1>
+        <p>engine overlay <i>v2.2</i></p>
+      </div>
+      <button id="toggle" class="power" type="button" role="switch" aria-checked="false" aria-label="Enable engine">
+        <span class="power-ring"></span>
+        <span class="power-knob"></span>
+      </button>
+    </header>
+
+    <section class="panel status">
+      <div class="status-line">
+        <span class="dot" id="dot"></span>
+        <span class="status-text" id="statusText">STANDBY</span>
+        <span class="pill" id="sitePill">NO BOARD</span>
+      </div>
+
+      <div class="readout">
+        <div class="move" id="bestMove">—</div>
+        <div class="eval" id="evalText">0.00</div>
+      </div>
+
+      <div class="bar" aria-hidden="true">
+        <span class="bar-mid"></span>
+        <i id="barFill"></i>
+      </div>
+
+      <div class="stats">
+        <span>depth <b id="depthNow">—</b></span>
+        <span class="sep"></span>
+        <span>engine <b id="engineName">stockfish</b></span>
+        <span class="spin" id="spin" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <section class="panel variants" id="variantsPanel" hidden>
+      <div class="control-head">
+        <label>VARIANTS</label>
+        <output id="variantCount">3 LINES</output>
+      </div>
+      <div class="variant-list" id="variantList"></div>
+    </section>
+
+    <section class="panel control">
+      <div class="control-head">
+        <label for="depth">SEARCH DEPTH</label>
+        <output id="depthVal" for="depth">18</output>
+      </div>
+      <input id="depth" type="range" min="6" max="24" step="1" value="18" aria-label="Search depth">
+      <div class="ticks"><span>fast</span><span>balanced</span><span>deep</span></div>
+
+      <div class="divider"></div>
+
+      <div class="opt-row">
+        <div class="opt-copy">
+          <span>MULTI VARIANT</span>
+          <small>candidate arrows</small>
+        </div>
+        <div class="opt-side">
+          <div class="stepper" id="linesStepper">
+            <button id="linesMinus" type="button" aria-label="Fewer variants">−</button>
+            <output id="linesVal">3</output>
+            <button id="linesPlus" type="button" aria-label="More variants">+</button>
+          </div>
+          <button id="multi" class="mini-switch" type="button" role="switch" aria-checked="true" aria-label="Multi variant">
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="opt-row">
+        <div class="opt-copy">
+          <span>AUTO PLAY</span>
+          <small id="autoHint">plays your moves</small>
+        </div>
+        <button id="auto" class="mini-switch" type="button" role="switch" aria-checked="false" aria-label="Auto play">
+          <span></span>
+        </button>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="tag">CHESS.COM</span>
+      <span class="tag">LICHESS</span>
+      <span class="hint" id="hint">toggle to arm</span>
+    </footer>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
